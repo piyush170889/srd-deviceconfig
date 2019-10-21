@@ -6,13 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.opensymphony.xwork2.ActionSupport;
 import com.srd.deviceconfig.constants.Constants;
 import com.srd.deviceconfig.model.SlnoHrR;
 import com.srd.deviceconfig.model.SlnoIrR;
 import com.srd.deviceconfig.utils.DbUtil;
 
-public class DataTabAction extends ActionSupport {
+public class DataTabAction {
 
 	private SlnoHrR slnoHrR;
 

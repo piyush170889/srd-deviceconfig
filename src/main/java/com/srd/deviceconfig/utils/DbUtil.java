@@ -14,10 +14,14 @@ public class DbUtil {
 			return connection;
 		} else {
 			try {
-				String driver = "com.mysql.jdbc.Driver";
-				String url = "jdbc:mysql://localhost:3306/deviceconfig";
-				String user = "root";
-				String password = "root";
+				// String driver = "com.mysql.jdbc.Driver";
+				// String url = "jdbc:mysql://localhost:3306/deviceconfig";
+				// String user = "root";
+				String driver = "org.postgresql.Driver";
+				String url = "jdbc:postgresql://localhost:5432/deviceconfig";
+				String user = "postgres";
+				String password = "admin";
+
 				Class.forName(driver);
 				connection = DriverManager.getConnection(url, user, password);
 			} catch (ClassNotFoundException e) {

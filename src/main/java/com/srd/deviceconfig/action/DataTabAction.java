@@ -52,7 +52,7 @@ public class DataTabAction {
 	private SlnoHrR getSlnoHrRFromDb() throws SQLException {
 
 		Connection con = DbUtil.getConnection();
-		String slNoHrRSql = "SELECT * FROM slno_hr_r ORDER BY Timestamp DESC LIMIT 0,1";
+		String slNoHrRSql = "SELECT * FROM slno1_hr_r ORDER BY time_stamp DESC LIMIT 1";
 
 		PreparedStatement ps = con.prepareStatement(slNoHrRSql);
 		ResultSet rs = ps.executeQuery();
@@ -60,7 +60,7 @@ public class DataTabAction {
 		SlnoHrR slnoHrR = null;
 
 		if (rs.next()) {
-			slnoHrR = new SlnoHrR(rs.getDate("Timestamp"), rs.getFloat("a0"), rs.getFloat("a1"), rs.getFloat("a2"),
+			slnoHrR = new SlnoHrR(rs.getDate("time_stamp"), rs.getFloat("a0"), rs.getFloat("a1"), rs.getFloat("a2"),
 					rs.getFloat("a3"), rs.getFloat("a5"), rs.getFloat("a6"), rs.getFloat("a8"),
 					rs.getFloat("Average_time_zero"), rs.getFloat("Blink_Range_max"), rs.getFloat("Blink_range_min"),
 					rs.getInt("Ch1_A_Gain"), rs.getFloat("Ch1_Beta0"), rs.getInt("Ch1_RF_Gain"),
@@ -84,7 +84,7 @@ public class DataTabAction {
 	private SlnoIrR getSlnoIrRFromDb() throws SQLException {
 
 		Connection con = DbUtil.getConnection();
-		String slNoIrRSql = "SELECT * FROM slno_ir_r ORDER BY Timestamp DESC LIMIT 0,1";
+		String slNoIrRSql = "SELECT * FROM slno1_ir_r ORDER BY time_stamp DESC LIMIT 1";
 
 		PreparedStatement ps = con.prepareStatement(slNoIrRSql);
 		ResultSet rs = ps.executeQuery();
@@ -92,7 +92,7 @@ public class DataTabAction {
 		SlnoIrR slnoIrR = null;
 
 		if (rs.next()) {
-			slnoIrR = new SlnoIrR(rs.getDate("Timestamp"), rs.getFloat("A"), rs.getFloat("A1"), rs.getFloat("A2"),
+			slnoIrR = new SlnoIrR(rs.getDate("time_stamp"), rs.getFloat("A"), rs.getFloat("A1"), rs.getFloat("A2"),
 					BigInteger.valueOf(rs.getLong("ADC_Counts_I")), BigInteger.valueOf(rs.getLong("ADC_Counts_Q")),
 					rs.getFloat("Calphi0"), rs.getFloat("Calphi01"), rs.getFloat("Calphi02"), rs.getFloat("CalR0"),
 					rs.getFloat("CalR01"), rs.getFloat("CalR02"), rs.getFloat("D"), rs.getFloat("D1"),

@@ -23,6 +23,11 @@
 			<result name="SUCCESS" type="json"></result>
 		</action>
 
+		<action name="updateDataTabDetailsJson" class="com.srd.deviceconfig.action.SlnoHrW"
+			method="updateDataTabDetailsJson">
+			<result name="SUCCESS" type="json"></result>
+		</action>
+
 	</package>
 
 </struts>

@@ -26,7 +26,7 @@
 
 		<action name="updateDataTabDetailsJson" class="com.srd.deviceconfig.action.SlnoHrW"
 			method="updateDataTabDetailsJson">
-			<result name="SUCCESS" type="json"></result>
+			<result name="SUCCESS" type="redirect">data-tab</result>
 		</action>
 
 	</package>

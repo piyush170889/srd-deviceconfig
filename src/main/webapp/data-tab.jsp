@@ -42,9 +42,9 @@
 					</div>
 
 					<div class="mp_div_3">
-						<label class="mp_div_3_label" id="mp_moist_perc"></label> <label
-							class="mp_div_3_label" id="mp_mat_Temp"></label> <label
-							id="mp_mat_density" class="mp_div_3_label"></label> <input
+						<label class="mp_div_3_label" id="mp_moist_perc">0.0</label> <label
+							class="mp_div_3_label" id="mp_mat_Temp">0.0</label> <label
+							id="mp_mat_density" class="mp_div_3_label">0.0</label> <input
 							type="radio" value="modbus"> Modbus <input type="radio"
 							value="modbus"> 4-20 mA
 					</div>
@@ -780,27 +780,27 @@
 				iz2_2, qz_2, qz1_2, qz2_2, calibValue) {
 
 			var data = {
-				'calibValue' : calibValue,
-				'ch1alpha0' : ch1alpha0,
-				'ch1beta0' : ch1beta0,
-				'ch2alpha0' : ch2alpha0,
-				'ch2beta0' : ch2beta0,
-				'a0' : a0,
-				'a1' : a1,
-				'a2' : a2,
-				'a3' : a3,
-				'coeff_d' : coeff_d,
-				'a5' : a5,
-				'a6' : a6,
-				'modbus_mattemp' : modbus_mattemp,
-				'pll_freq1' : pll_freq1,
+				'calibValue' : parseInt(calibValue),
+				'ch1alpha0' : parseFloat(ch1alpha0),
+				'ch1beta0' : parseFloat(ch1beta0),
+				'ch2alpha0' : parseFloat(ch2alpha0),
+				'ch2beta0' : parseFloat(ch2beta0),
+				'a0' : parseFloat(a0),
+				'a1' : parseFloat(a1),
+				'a2' : parseFloat(a2),
+				'a3' : parseFloat(a3),
+				'coeff_d' : parseFloat(coeff_d),
+				'a5' : parseFloat(a5),
+				'a6' : parseFloat(a6),
+				'modbus_mattemp' : parseFloat(modbus_mattemp),
+				'pll_freq1' : parseFloat(pll_freq1),
 				'pll_freq2' : pll_freq2,
 				'average_time_zero' : average_time_zero,
 				'normal_avg_time' : normal_avg_time,
 				'det_avg_time' : det_avg_time,
 				'temp_sel' : temp_sel,
 				'mval_sel' : mval_sel,
-				'ch1_a_gain' : ch1_a_gain,
+				'ch1_a_gain' : parseInt(ch1_a_gain),
 				'ch1_rf_gain' : ch1_rf_gain,
 				'mode' : mode,
 				'p' : p,
@@ -849,58 +849,65 @@
 		function startCalibration(calibValue) {
 			console.log('calibValue = ' + calibValue);
 
-			var ch1alpha0=$('#ce_ch1Alpha0').val();
-			var ch1beta0=$('#ce_ch1_Beta0').val();
-			var ch2alpha0=$('#ce_ch2Alpha0').val();
-			var ch2beta0=$('#ce_ch2Beta0').val();
-			var a0=$('#ce_a0').val();
-			var a1=$('#ce_a1').val();
-			var a2=$('#ce_a2').val();
-			var a3=$('#ce_a3').val();
-			var coeff_d=$('#ce_coeffD').val();
-			var a5=$('#ce_a5').val();
-			var a6=$('#ce_a6').val();
-			var modbus_mattemp=$('#mp_mat_Temp').val();
-			var pll_freq1=$('#itc_freq1').val();
-			var pll_freq2=$('#itc_freq2').val();
-			var average_time_zero=
-			$('#ds_average_time_zero').val();
-			var normal_avg_time=$('#ds_normal_Avg_time').val();
-			var det_avg_time=$('#ds_det_Avg_time').val();
-			var temp_sel='';
-			var mval_sel='';
-			var ch1_a_gain=$('#itc_rf_gain').val();
-			var ch1_rf_gain=$('#itc_rf_gain1').val(); 
-			var mode=''; 
-			var p=$('#itc_p').val(); 
-			var i=$('#itc_i').val(); 
-			var d=$('#itc_d').val();
-			var int_temp_setpoint=$('#itc_int_temp_setpoint').val(); 
-			var blink_range_max=$('#dp_blink_Range_max').val(); 
-			var blink_range_min=$('#dp_blink_range_min').val();
-			var mat_temp_min=''; 
-			var mat_temp_max=''; 
-			var ch2_a_gain=$('#itc_analog_gain2').val(); 
-			var ch2_rf_gain=$('#ch2_rf_gain').val();
-			var proxi_enable=$('#proxi_enable').val(); 
-			var tempcont_enable=$('#tempcont_enable').val(); 
-			var iout_calib_5_ma=$('#iout_calib_5_ma').val();
-			var iout_calib_19_ma=$('#iout_calib_19_ma').val(); 
-			var s1=$('#s1').val(); 
-			var s2=$('#s2').val(); 
-			var n1=$('#n1').val(); 
-			var n2=$('#n2').val(); 
-			var spare=$('#spare').val(); 
-			var rho=$('#rho').val(); 
-			var a8=$('#a8').val(); 
-			var iz_2=$('#iz_2').val(); 
-			var iz1_2=$('#iz1_2').val();
-			var iz2_2=$('#iz2_2').val(); 
-			var qz_2=$('#qz_2').val(); 
-			var qz1_2=$('#qz1_2').val(); 
-			var qz2_2=$('#qz2_2').val(); 
-			
-			updateDataTabDetails(, calibValue);
+			var ch1alpha0 = $('#ce_ch1Alpha0').val();
+			var ch1beta0 = $('#ce_ch1_Beta0').val();
+			var ch2alpha0 = $('#ce_ch2Alpha0').val();
+			var ch2beta0 = $('#ce_ch2Beta0').val();
+			var a0 = $('#ce_a0').val();
+			var a1 = $('#ce_a1').val();
+			var a2 = $('#ce_a2').val();
+			var a3 = $('#ce_a3').val();
+			var coeff_d = $('#ce_coeffD').val();
+			var a5 = $('#ce_a5').val();
+			var a6 = $('#ce_a6').val();
+			var modbus_mattemp = $('#mp_mat_Temp').val();
+			var pll_freq1 = $('#itc_freq1').val();
+			var pll_freq2 = $('#itc_freq2').val();
+			var average_time_zero = $('#ds_average_time_zero').val();
+			var normal_avg_time = $('#ds_normal_Avg_time').val();
+			var det_avg_time = $('#ds_det_Avg_time').val();
+			var temp_sel = 0;
+			var mval_sel = 0;
+			var ch1_a_gain = $('#itc_analog_gain').val();
+			var ch1_rf_gain = $('#itc_rf_gain').val();
+			var mode = 0;
+			var p = $('#itc_p').val();
+			var i = $('#itc_i').val();
+			var d = $('#itc_d').val();
+			var int_temp_setpoint = $('#itc_int_temp_setpoint').val();
+			var blink_range_max = $('#dp_blink_Range_max').val();
+			var blink_range_min = $('#dp_blink_range_min').val();
+			var mat_temp_min = 0;
+			var mat_temp_max = 0;
+			var ch2_a_gain = $('#itc_analog_gain2').val();
+			var ch2_rf_gain = $('#itc_rf_gain2').val();
+			var proxi_enable = 0;
+			var tempcont_enable = 0;
+			var iout_calib_5_ma = 0;
+			var iout_calib_19_ma = 0;
+			var s1 = $('#ce_s1').val();
+			var s2 = $('#ce_s2').val();
+			var n1 = $('#ce_n1').val();
+			var n2 = $('#ce_n2').val();
+			var spare = 0;
+			var rho = $('#ce_rho').val();
+			var a8 = $('#ce_a8').val();
+			var iz_2 = 0;
+			var iz1_2 = 0;
+			var iz2_2 = 0;
+			var qz_2 = 0;
+			var qz1_2 = 0;
+			var qz2_2 = 0;
+
+			updateDataTabDetails(ch1alpha0, ch1beta0, ch2alpha0, ch2beta0, a0,
+					a1, a2, a3, coeff_d, a5, a6, modbus_mattemp, pll_freq1,
+					pll_freq2, average_time_zero, normal_avg_time,
+					det_avg_time, temp_sel, mval_sel, ch1_a_gain, ch1_rf_gain,
+					mode, p, i, d, int_temp_setpoint, blink_range_max,
+					blink_range_min, mat_temp_min, mat_temp_max, ch2_a_gain,
+					ch2_rf_gain, proxi_enable, tempcont_enable,
+					iout_calib_5_ma, iout_calib_19_ma, s1, s2, n1, n2, spare,
+					rho, a8, iz_2, iz1_2, iz2_2, qz_2, qz1_2, qz2_2, calibValue)
 		}
 	</script>
 

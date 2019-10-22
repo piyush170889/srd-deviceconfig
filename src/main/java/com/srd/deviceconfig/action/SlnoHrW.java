@@ -1,10 +1,14 @@
 package com.srd.deviceconfig.action;
 
+import java.sql.Connection;
 import java.util.Date;
 
 import com.srd.deviceconfig.constants.Constants;
+import com.srd.deviceconfig.utils.DbUtil;
 
 public class SlnoHrW {
+
+	private int calibValue;
 
 	private Date time_stamp;
 
@@ -105,8 +109,6 @@ public class SlnoHrW {
 	private float qz1_2;
 
 	private float qz2_2;
-
-	private int calibValue;
 
 	public SlnoHrW() {
 	}
@@ -522,9 +524,11 @@ public class SlnoHrW {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("SlnoHrW [time_stamp=");
+		builder.append("SlnoHrW [calibValue=");
+		builder.append(calibValue);
+		builder.append(", time_stamp=");
 		builder.append(time_stamp);
-		builder.append("ch1alpha0=");
+		builder.append(", ch1alpha0=");
 		builder.append(ch1alpha0);
 		builder.append(", ch1beta0=");
 		builder.append(ch1beta0);
@@ -630,6 +634,10 @@ public class SlnoHrW {
 
 		System.out.println(this.toString());
 
+		Connection con = DbUtil.getConnection();
+
+		//Insert values into Slno_Hr_W table
+		
 		return Constants.SUCCESS_MSG;
 	}
 

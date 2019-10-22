@@ -106,7 +106,17 @@ public class SlnoHrW {
 
 	private float qz2_2;
 
+	private int calibValue;
+
 	public SlnoHrW() {
+	}
+
+	public int getCalibValue() {
+		return calibValue;
+	}
+
+	public void setCalibValue(int calibValue) {
+		this.calibValue = calibValue;
 	}
 
 	public Date getTime_stamp() {

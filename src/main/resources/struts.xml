@@ -10,8 +10,9 @@
 	<!-- LOGIN-LOGOUT ACTIONS -->
 	<package name="com" namespace="/" extends="json-default">
 
-		<action name="deviceconfig-home">
-			<result>/index.jsp</result>
+		<action name="/" class="com.srd.deviceconfig.action.DeviceMasterAction">
+			<result name="SUCCESS">/index.jsp</result>
+			<result name="ERROR">/index.jsp</result>
 		</action>
 
 		<action name="data-tab">

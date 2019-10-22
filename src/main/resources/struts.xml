@@ -29,6 +29,11 @@
 			<result name="SUCCESS" type="redirect">data-tab</result>
 		</action>
 
+		<action name="insertFocusOutData" class="com.srd.deviceconfig.action.SlnoHrW"
+			method="insertFocusOutData">
+			<result name="SUCCESS" type="redirect">data-tab</result>
+		</action>
+
 	</package>
 
 </struts>

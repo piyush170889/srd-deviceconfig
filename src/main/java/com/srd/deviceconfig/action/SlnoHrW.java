@@ -1,6 +1,7 @@
 package com.srd.deviceconfig.action;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.Date;
 
 import com.srd.deviceconfig.constants.Constants;
@@ -109,6 +110,10 @@ public class SlnoHrW {
 	private float qz1_2;
 
 	private float qz2_2;
+
+	private String fieldId;
+
+	private String fieldValue;
 
 	public SlnoHrW() {
 	}
@@ -521,6 +526,46 @@ public class SlnoHrW {
 		this.qz2_2 = qz2_2;
 	}
 
+	public String getFieldId() {
+		return fieldId;
+	}
+
+	public void setFieldId(String fieldId) {
+		this.fieldId = fieldId;
+	}
+
+	public String getFieldValue() {
+		return fieldValue;
+	}
+
+	public void setFieldValue(String fieldValue) {
+		this.fieldValue = fieldValue;
+	}
+
+	public String insertFocusOutData() {
+
+		System.out.println("fieldId = " + this.fieldId + ", fieldVal = " + this.fieldValue);
+		String returnMssg = Constants.SUCCESS_MSG;
+
+		try {
+			String columnName = Constants.fieldIdToDbColumnMapping.get(this.fieldId);
+
+			String insertSlnoHrWSql = "INSERT INTO slno1_hr_w(time_stamp, " + columnName + ") VALUES ('"
+					+ new Date().getTime() + "', " + this.fieldValue + ")";
+			System.out.println("insertSlnoHrWSql = " + insertSlnoHrWSql);
+
+			Connection con = DbUtil.getConnection();
+			PreparedStatement ps = con.prepareStatement(insertSlnoHrWSql);
+
+			ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnMssg = Constants.ERROR_MSG;
+		}
+
+		return returnMssg;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -636,8 +681,8 @@ public class SlnoHrW {
 
 		Connection con = DbUtil.getConnection();
 
-		//Insert values into Slno_Hr_W table
-		
+		// Insert values into Slno_Hr_W table
+
 		return Constants.SUCCESS_MSG;
 	}
 

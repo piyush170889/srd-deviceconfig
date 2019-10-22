@@ -287,7 +287,8 @@
 					<!-- <h5>Frequency</h5> -->
 
 					<div class="center-div-val">
-						<input type="number" id="itc_freq1" />
+						<input type="number" id="itc_freq1"
+							onblur="updateCalibrationValue('itc_freq1');" />
 					</div>
 
 					<div class="center-div-val">
@@ -908,6 +909,238 @@
 					ch2_rf_gain, proxi_enable, tempcont_enable,
 					iout_calib_5_ma, iout_calib_19_ma, s1, s2, n1, n2, spare,
 					rho, a8, iz_2, iz1_2, iz2_2, qz_2, qz1_2, qz2_2, calibValue)
+		}
+
+		function updateCalibrationValue(fieldId) {
+			console.log('fieldId = ' + fieldId);
+
+			var id = '#' + fieldId;
+			var fieldVal = $(id).val();
+			var data = {
+				'fieldId' : fieldId,
+				'fieldValue' : fieldVal
+			};
+
+			$.ajax({
+				type : 'POST',
+				url : "insertFocusOutData",
+				data : data,
+				success : function(data) {
+					console.log(data);
+				}
+			});
+
+			/* 
+			var ch1alpha0 = 0;
+			var ch1beta0 = 0;
+			var ch2alpha0 = 0;
+			var ch2beta0 = 0;
+			var a0 = 0;
+			var a1 = 0;
+			var a2 = 0;
+			var a3 = 0;
+			var coeff_d = 0;
+			var a5 = 0;
+			var a6 = 0;
+			var modbus_mattemp = 0;
+			var pll_freq1 = 0;
+			var pll_freq2 = 0;
+			var average_time_zero = 0;
+			var normal_avg_time = 0;
+			var det_avg_time = 0;
+			var temp_sel = 0;
+			var mval_sel = 0;
+			var ch1_a_gain = 0;
+			var ch1_rf_gain = 0;
+			var mode = 0;
+			var p = 0;
+			var i = 0;
+			var d = 0;
+			var int_temp_setpoint = 0;
+			var blink_range_max = 0;
+			var blink_range_min = 0;
+			var mat_temp_min = 0;
+			var mat_temp_max = 0;
+			var ch2_a_gain = 0;
+			var ch2_rf_gain = 0;
+			var proxi_enable = 0;
+			var tempcont_enable = 0;
+			var iout_calib_5_ma = 0;
+			var iout_calib_19_ma = 0;
+			var s1 = 0;
+			var s2 = 0;
+			var n1 = 0;
+			var n2 = 0;
+			var spare = 0;
+			var rho = 0;
+			var a8 = 0;
+			var iz_2 = 0;
+			var iz1_2 = 0;
+			var iz2_2 = 0;
+			var qz_2 = 0;
+			var qz1_2 = 0;
+			var qz2_2 = 0;
+
+			switch (fieldId) {
+			case 'itc_int_temp_setpoint':
+				int_temp_setpoint = $('#itc_int_temp_setpoint').val();
+				break;
+
+			case 'itc_p':
+				p = $('#itc_p').val();
+				break;
+
+			case 'itc_i':
+				i = $('#itc_i').val();
+				break;
+
+			case 'itc_d':
+				d = $('#itc_d').val();
+				break;
+
+			case 'ds_average_time_zero':
+				average_time_zero = $('#ds_average_time_zero').val();
+				break;
+
+			case 'ds_normal_Avg_time':
+				normal_avg_time = $('#ds_normal_Avg_time').val();
+				break;
+
+			case 'ds_det_Avg_time':
+				det_avg_time = $('#ds_det_Avg_time').val();
+				break;
+
+			case 'itc_freq':
+
+				break;
+
+			case 'itc_freq1':
+				pll_freq1 = $('#itc_freq1').val();
+				break;
+
+			case 'itc_freq2':
+				pll_freq2 = $('#itc_freq2').val();
+				break;
+
+			case 'itc_rf_gain':
+				ch1_rf_gain = $('#itc_rf_gain').val();
+				break;
+
+			case 'itc_rf_gain1':
+
+				break;
+
+			case 'itc_rf_gain2':
+
+				break;
+
+			case 'itc_analog_gain':
+				ch1_a_gain = $('#itc_analog_gain').val();
+				break;
+
+			case 'itc_analog_gain1':
+
+				break;
+
+			case 'itc_analog_gain2':
+
+				break;
+
+			case 'ce_coeffD':
+				coeff_d = $('#ce_coeffD').val();
+				break;
+
+			case 'ce_rho':
+				rho = $('#ce_rho').val();
+				break;
+
+			case 'ce_ch1Alpha0':
+				ch1alpha0 = $('#ce_ch1Alpha0').val();
+				break;
+
+			case 'ce_a1':
+				a1 = $('#ce_a1').val();
+				break;
+
+			case 'ce_a2':
+				a2 = $('#ce_a2').val();
+				break;
+
+			case 'ce_ch1_Beta0':
+				ch1beta0 = $('#ce_ch1_Beta0').val();
+				break;
+
+			case 'ce_a3':
+				a3 = $('#ce_a3').val();
+				break;
+
+			case 'ce_a8':
+				a8 = $('#ce_a8').val();
+				break;
+
+			case 'ce_ch2Alpha0':
+				ch2alpha0 = $('#ce_ch2Alpha0').val();
+				break;
+
+			case 'ce_a0':
+				a0 = $('#ce_a0').val();
+				break;
+
+			case 'ce_a5':
+				a5 = $('#ce_a5').val();
+				break;
+
+			case 'ce_ch2Beta0':
+				ch2beta0 = $('#ce_ch2Beta0').val();
+				break;
+
+			case 'ce_a6':
+				a6 = $('#ce_a6').val();
+				break;
+
+			case 'ce_s1':
+				s1 = $('#ce_s1').val();
+				break;
+
+			case 'ce_s2':
+				s2 = $('#ce_s2').val();
+				break;
+
+			case 'ce_n1':
+				n1 = $('#ce_n1').val();
+				break;
+
+			case 'ce_n2':
+				n2 = $('#ce_n2').val();
+				break;
+
+			case 'dp_blink_Range_max':
+				blink_range_max = $('#dp_blink_Range_max').val();
+				break;
+
+			case 'dp_mat_temp_Max':
+
+				break;
+
+			case 'dp_blink_range_min':
+				blink_range_min = $('#dp_blink_range_min').val();
+				break;
+
+			case 'dp_mat_temp_min':
+
+				break;
+			} 
+
+			updateDataTabDetails(ch1alpha0, ch1beta0, ch2alpha0, ch2beta0, a0,
+					a1, a2, a3, coeff_d, a5, a6, modbus_mattemp, pll_freq1,
+					pll_freq2, average_time_zero, normal_avg_time,
+					det_avg_time, temp_sel, mval_sel, ch1_a_gain, ch1_rf_gain,
+					mode, p, i, d, int_temp_setpoint, blink_range_max,
+					blink_range_min, mat_temp_min, mat_temp_max, ch2_a_gain,
+					ch2_rf_gain, proxi_enable, tempcont_enable,
+					iout_calib_5_ma, iout_calib_19_ma, s1, s2, n1, n2, spare,
+					rho, a8, iz_2, iz1_2, iz2_2, qz_2, qz1_2, qz2_2, calibValue)
+			 */
 		}
 	</script>
 

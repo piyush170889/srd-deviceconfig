@@ -551,7 +551,7 @@ public class SlnoHrW {
 			String columnName = Constants.fieldIdToDbColumnMapping.get(this.fieldId);
 
 			String insertSlnoHrWSql = "INSERT INTO slno1_hr_w(time_stamp, " + columnName + ") VALUES ('"
-					+ new Date().getTime() + "', " + this.fieldValue + ")";
+					+ new Date() + "', " + this.fieldValue + ")";
 			System.out.println("insertSlnoHrWSql = " + insertSlnoHrWSql);
 
 			Connection con = DbUtil.getConnection();

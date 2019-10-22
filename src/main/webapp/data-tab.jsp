@@ -42,7 +42,19 @@
 					</div>
 
 					<div class="mp_div_3">
-						<label class="mp_div_3_label" id="mp_moist_perc">0.0</label> <label
+					<div class="col-50">
+						<label>Wet</label>
+					</div>
+					<div class="col-50">
+						<label>Dry</label>
+					</div>
+					<div class="col-50">
+						<label class="mp_div_3_label" id="mp_moist_perc_wet">0.0</label>
+					</div>
+					<div class="col-50">
+						<label class="mp_div_3_label" id="mp_moist_perc_dry">0.0</label>
+					</div>
+						 <label
 							class="mp_div_3_label" id="mp_mat_Temp">0.0</label> <label
 							id="mp_mat_density" class="mp_div_3_label">0.0</label> <input
 							type="radio" value="modbus"> Modbus <input type="radio"
@@ -669,7 +681,7 @@
 						</div>
 						<div class="col-50">
 							<div class="progress-bar">
-								<span style="width: 25%"></span>
+								<span id="progress-bar-span" style="width: 25%"></span>
 							</div>
 						</div>
 					</div>
@@ -681,7 +693,8 @@
 						</div>
 						<div class="col-50">
 							<input type="button" value="Start Calibration 1"
-								onclick="startCalibration(1)" class="btn_submit" />
+								onclick="startCalibration(1)" class="btn_submit" /> <input
+								type="hidden" id="progress-bar-activity" value="0" />
 						</div>
 					</div>
 				</div>
@@ -697,113 +710,138 @@
 	<script>
 		function getDataTabDetailsJson() {
 
-			$.ajax({
-				type : 'GET',
-				url : "getDataTabDetailsJson",
-				success : function(data) {
-					console.log(data);
+			$
+					.ajax({
+						type : 'GET',
+						url : "getDataTabDetailsJson",
+						success : function(data) {
+							console.log(data);
 
-					// Set Material Parameters
-					//$('#mp_moist_perc').val(data.);
-					$('#mp_mat_Temp').html(data.slnoIrR.mat_Temp);
-					//$('#mp_mat_density').val(data.);
-					//$('#mp_mat_temp_source').val(data.);
+							// Set Material Parameters
+							//$('#mp_moist_perc').val(data.);
+							$('#mp_mat_Temp').html(data.slnoIrR.mat_Temp);
+							//$('#mp_mat_density').val(data.);
+							//$('#mp_mat_temp_source').val(data.);
 
-					// Set Internal Temp Control Parameters
-					$('#itc_temp_PS').html(data.slnoIrR.temp_PS);
-					$('#itc_temp_CPU').html(data.slnoIrR.temp_CPU);
-					$('#itc_temp_RF').html(data.slnoIrR.temp_RF);
-					$('#itc_h_Dutycycle').html(data.slnoIrR.h_Dutycycle);
-					$('#itc_int_temp_setpoint').val(
-							data.slnoHrR.int_temp_setpoint);
-					$('#itc_p').val(data.slnoHrR.p);
-					$('#itc_i').val(data.slnoIrR.i);
-					$('#itc_d').val(data.slnoIrR.d);
+							// Set Internal Temp Control Parameters
+							$('#itc_temp_PS').html(data.slnoIrR.temp_PS);
+							$('#itc_temp_CPU').html(data.slnoIrR.temp_CPU);
+							$('#itc_temp_RF').html(data.slnoIrR.temp_RF);
+							$('#itc_h_Dutycycle')
+									.html(data.slnoIrR.h_Dutycycle);
+							$('#itc_int_temp_setpoint').val(
+									data.slnoHrR.int_temp_setpoint);
+							$('#itc_p').val(data.slnoHrR.p);
+							$('#itc_i').val(data.slnoIrR.i);
+							$('#itc_d').val(data.slnoIrR.d);
 
-					// Device Settings Parameters
-					$('#ds_average_time_zero').val(
-							data.slnoHrR.average_time_zero);
-					$('#ds_det_Avg_time').val(data.slnoHrR.det_Avg_time);
-					$('#ds_normal_Avg_time').val(data.slnoHrR.normal_Avg_time);
+							// Device Settings Parameters
+							$('#ds_average_time_zero').val(
+									data.slnoHrR.average_time_zero);
+							$('#ds_det_Avg_time')
+									.val(data.slnoHrR.det_Avg_time);
+							$('#ds_normal_Avg_time').val(
+									data.slnoHrR.normal_Avg_time);
 
-					// Internal Calculations Parameters
-					//$('#itc_freq').val(data.);
-					//$('#itc_freq1').val(data.);
-					//$('#itc_freq2').val(data.);
-					//$('#itc_rf_gain').val(data.);
-					//$('#itc_rf_gain1').val(data.);
-					//$('#itc_rf_gain2').val(data.);
-					//$('#itc_analog_gain').val(data.);
-					//$('#itc_analog_gain1').val(data.);
-					//$('#itc_analog_gain2').val(data.);
-					//$('#itc_i0').html(data.);
-					//$('#itc_i1').html(data.);
-					//$('#itc_i2').html(data.);
-					//$('#itc_q0').html(data.);
-					//$('#itc_q1').html(data.);
-					//$('#itc_q2').html(data.);
-					//$('#itc_d0').html(data.);
-					//$('#itc_d1').html(data.);
-					//$('#itc_d2').html(data.);
-					//$('#itc_r0').html(data.);
-					//$('#itc_r1').html(data.);
-					//$('#itc_r2').html(data.);
-					$('#itc_phi').html(data.slnoIrR.phi);
-					$('#itc_phi1').html(data.slnoIrR.phi1);
-					$('#itc_phi2').html(data.slnoIrR.phi2);
-					//$('#itc_a0').html(data.);
-					//$('#itc_a1').html(data.);
-					//$('#itc_a2').html(data.);
-					$('#itc_dphi').html(data.slnoIrR.dphi);
-					$('#itc_dphi1').html(data.slnoIrR.dphi1);
-					$('#itc_dphi2').html(data.slnoIrR.dphi2);
-					$('#itc_calR0').html(data.slnoIrR.calR0);
-					$('#itc_calR01').html(data.slnoIrR.calR01);
-					$('#itc_calR02').html(data.slnoIrR.calR02);
-					$('#itc_calphi0').html(data.slnoIrR.calphi0);
-					$('#itc_calphi01').html(data.slnoIrR.calphi01);
-					$('#itc_calphi02').html(data.slnoIrR.calphi02);
-					//$('#itc_rz0').html(data.);
-					//$('#itc_rz1').html(data.);
-					//$('#itc_rz2').html(data.);
-					$('#itc_phiz').html(data.slnoIrR.phiz);
-					$('#itc_phiz1').html(data.slnoIrR.phiz1);
-					$('#itc_phiz2').html(data.slnoIrR.phiz2);
+							// Internal Calculations Parameters
+							//$('#itc_freq').val(data.);
+							$('#itc_freq1').val(data.slnoHrR.PLL_Freq1);
+							$('#itc_freq2').val(data.slnoHrR.PLL_Freq2);
+							//$('#itc_rf_gain').val(data.);
+							$('#itc_rf_gain1').val(data.slnoHrR.ch1_RF_Gain);
+							$('#itc_rf_gain2').val(data.slnoHrR.CH2_RF_Gain);
+							//$('#itc_analog_gain').val(data.slnoHrR.);
+							$('#itc_analog_gain1').val(data.slnoHrR.ch1_A_Gain);
+							$('#itc_analog_gain2').val(data.slnoHrR.ch2_A_Gain);
+							//$('#itc_i0').html(data.);
+							//$('#itc_i1').html(data.);
+							//$('#itc_i2').html(data.);
+							//$('#itc_q0').html(data.);
+							//$('#itc_q1').html(data.);
+							//$('#itc_q2').html(data.);
+							//$('#itc_d0').html(data.);
+							//$('#itc_d1').html(data.);
+							//$('#itc_d2').html(data.);
+							//$('#itc_r0').html(data.);
+							//$('#itc_r1').html(data.);
+							//$('#itc_r2').html(data.);
+							$('#itc_phi').html(data.slnoIrR.phi);
+							$('#itc_phi1').html(data.slnoIrR.phi1);
+							$('#itc_phi2').html(data.slnoIrR.phi2);
+							//$('#itc_a0').html(data.);
+							//$('#itc_a1').html(data.);
+							//$('#itc_a2').html(data.);
+							$('#itc_dphi').html(data.slnoIrR.dphi);
+							$('#itc_dphi1').html(data.slnoIrR.dphi1);
+							$('#itc_dphi2').html(data.slnoIrR.dphi2);
+							$('#itc_calR0').html(data.slnoIrR.calR0);
+							$('#itc_calR01').html(data.slnoIrR.calR01);
+							$('#itc_calR02').html(data.slnoIrR.calR02);
+							$('#itc_calphi0').html(data.slnoIrR.calphi0);
+							$('#itc_calphi01').html(data.slnoIrR.calphi01);
+							$('#itc_calphi02').html(data.slnoIrR.calphi02);
+							$('#itc_rz0').html(data.slnoIrR.r_z);
+							$('#itc_rz1').html(data.slnoIrR.r_z1);
+							$('#itc_rz2').html(data.slnoIrR.r_z2);
+							$('#itc_phiz').html(data.slnoIrR.phiz);
+							$('#itc_phiz1').html(data.slnoIrR.phiz1);
+							$('#itc_phiz2').html(data.slnoIrR.phiz2);
 
-					// Co-efficient Parameters
-					$('#ce_coeffD').val(data.slnoHrR.coeffD);
-					$('#ce_rho').val(data.slnoHrR.rho);
-					$('#ce_ch1Alpha0').val(data.slnoHrR.ch1Alpha0);
-					$('#ce_ch1_Beta0').val(data.slnoHrR.ch1_Beta0);
-					$('#ce_ch2Alpha0').val(data.slnoHrR.ch2Alpha0);
-					$('#ce_ch2Beta0').val(data.slnoHrR.ch2Beta0);
-					$('#ce_a0').val(data.slnoHrR.a0);
-					$('#ce_a1').val(data.slnoHrR.a1);
-					$('#ce_a2').val(data.slnoHrR.a2);
-					$('#ce_a3').val(data.slnoHrR.a3);
-					$('#ce_a5').val(data.slnoHrR.a5);
-					$('#ce_a6').val(data.slnoHrR.a6);
-					$('#ce_a8').val(data.slnoHrR.a8);
-					$('#ce_s1').val(data.slnoHrR.s1);
-					$('#ce_s2').val(data.slnoHrR.s2);
-					$('#ce_n1').val(data.slnoHrR.n1);
-					$('#ce_n2').val(data.slnoHrR.n2);
+							// Co-efficient Parameters
+							$('#ce_coeffD').val(data.slnoHrR.coeffD);
+							$('#ce_rho').val(data.slnoHrR.rho);
+							$('#ce_ch1Alpha0').val(data.slnoHrR.ch1Alpha0);
+							$('#ce_ch1_Beta0').val(data.slnoHrR.ch1_Beta0);
+							$('#ce_ch2Alpha0').val(data.slnoHrR.ch2Alpha0);
+							$('#ce_ch2Beta0').val(data.slnoHrR.ch2Beta0);
+							$('#ce_a0').val(data.slnoHrR.a0);
+							$('#ce_a1').val(data.slnoHrR.a1);
+							$('#ce_a2').val(data.slnoHrR.a2);
+							$('#ce_a3').val(data.slnoHrR.a3);
+							$('#ce_a5').val(data.slnoHrR.a5);
+							$('#ce_a6').val(data.slnoHrR.a6);
+							$('#ce_a8').val(data.slnoHrR.a8);
+							$('#ce_s1').val(data.slnoHrR.s1);
+							$('#ce_s2').val(data.slnoHrR.s2);
+							$('#ce_n1').val(data.slnoHrR.n1);
+							$('#ce_n2').val(data.slnoHrR.n2);
 
-					// Diagnostics Parameter Parameters
-					console.log('data.slnoIrR.ADC_Counts_I = '
-							+ data.slnoIrR.ADC_Counts_I);
-					$('#dp_ADC_Counts_I').html(data.slnoIrR.ADC_Counts_I);
-					$('#dp_ADC_Counts_Q').html(data.slnoIrR.ADC_Counts_Q);
-					console.log('data.slnoIrR.ADC_Counts_Q = '
-							+ data.slnoIrR.ADC_Counts_Q);
+							// Diagnostics Parameter Parameters
+							console.log('data.slnoIrR.ADC_Counts_I = '
+									+ data.slnoIrR.ADC_Counts_I);
+							$('#dp_ADC_Counts_I').html(
+									data.slnoIrR.ADC_Counts_I);
+							$('#dp_ADC_Counts_Q').html(
+									data.slnoIrR.ADC_Counts_Q);
+							console.log('data.slnoIrR.ADC_Counts_Q = '
+									+ data.slnoIrR.ADC_Counts_Q);
 
-					// 4-20 mA Limits Parameter
-					$('#dp_blink_Range_max').val(data.slnoHrR.blink_Range_max);
-					$('#dp_blink_range_min').val(data.slnoHrR.blink_range_min);
-					$('#dp_mat_temp_Max').val(data.slnoHrR.mat_temp_Max);
-					$('#dp_mat_temp_min').val(data.slnoHrR.mat_temp_min);
-				}
-			});
+							// 4-20 mA Limits Parameter
+							$('#dp_blink_Range_max').val(
+									data.slnoHrR.blink_Range_max);
+							$('#dp_blink_range_min').val(
+									data.slnoHrR.blink_range_min);
+							$('#dp_mat_temp_Max')
+									.val(data.slnoHrR.mat_temp_Max);
+							$('#dp_mat_temp_min')
+									.val(data.slnoHrR.mat_temp_min);
+
+							var progressbaractivity = $(
+									'#progress-bar-activity').val();
+
+							if (progressbaractivity == '1') {
+								var remainingTime = data.slnoIrR.remaining_time;
+
+								if (remainingTime > 0) {
+									$('#progress-bar-span').css('width',
+											remainingTime);
+								} else {
+									$('#progress-bar-activity').val('0');
+									$('#progress-bar-span').css('width', 0);
+								}
+							}
+						}
+					});
 		}
 
 		function updateDataTabDetails(ch1alpha0, ch1beta0, ch2alpha0, ch2beta0,
@@ -875,13 +913,11 @@
 				data : data,
 				success : function(data) {
 					console.log(data);
+
+					$('#progress-bar-activity').val('1');
 				}
 			});
 		}
-
-		$(document).ready(function() {
-			getDataTabDetailsJson();
-		});
 
 		function startCalibration(calibValue) {
 			console.log('calibValue = ' + calibValue);
@@ -965,219 +1001,13 @@
 					console.log(data);
 				}
 			});
-
-			/* 
-			var ch1alpha0 = 0;
-			var ch1beta0 = 0;
-			var ch2alpha0 = 0;
-			var ch2beta0 = 0;
-			var a0 = 0;
-			var a1 = 0;
-			var a2 = 0;
-			var a3 = 0;
-			var coeff_d = 0;
-			var a5 = 0;
-			var a6 = 0;
-			var modbus_mattemp = 0;
-			var pll_freq1 = 0;
-			var pll_freq2 = 0;
-			var average_time_zero = 0;
-			var normal_avg_time = 0;
-			var det_avg_time = 0;
-			var temp_sel = 0;
-			var mval_sel = 0;
-			var ch1_a_gain = 0;
-			var ch1_rf_gain = 0;
-			var mode = 0;
-			var p = 0;
-			var i = 0;
-			var d = 0;
-			var int_temp_setpoint = 0;
-			var blink_range_max = 0;
-			var blink_range_min = 0;
-			var mat_temp_min = 0;
-			var mat_temp_max = 0;
-			var ch2_a_gain = 0;
-			var ch2_rf_gain = 0;
-			var proxi_enable = 0;
-			var tempcont_enable = 0;
-			var iout_calib_5_ma = 0;
-			var iout_calib_19_ma = 0;
-			var s1 = 0;
-			var s2 = 0;
-			var n1 = 0;
-			var n2 = 0;
-			var spare = 0;
-			var rho = 0;
-			var a8 = 0;
-			var iz_2 = 0;
-			var iz1_2 = 0;
-			var iz2_2 = 0;
-			var qz_2 = 0;
-			var qz1_2 = 0;
-			var qz2_2 = 0;
-
-			switch (fieldId) {
-			case 'itc_int_temp_setpoint':
-				int_temp_setpoint = $('#itc_int_temp_setpoint').val();
-				break;
-
-			case 'itc_p':
-				p = $('#itc_p').val();
-				break;
-
-			case 'itc_i':
-				i = $('#itc_i').val();
-				break;
-
-			case 'itc_d':
-				d = $('#itc_d').val();
-				break;
-
-			case 'ds_average_time_zero':
-				average_time_zero = $('#ds_average_time_zero').val();
-				break;
-
-			case 'ds_normal_Avg_time':
-				normal_avg_time = $('#ds_normal_Avg_time').val();
-				break;
-
-			case 'ds_det_Avg_time':
-				det_avg_time = $('#ds_det_Avg_time').val();
-				break;
-
-			case 'itc_freq':
-
-				break;
-
-			case 'itc_freq1':
-				pll_freq1 = $('#itc_freq1').val();
-				break;
-
-			case 'itc_freq2':
-				pll_freq2 = $('#itc_freq2').val();
-				break;
-
-			case 'itc_rf_gain':
-				ch1_rf_gain = $('#itc_rf_gain').val();
-				break;
-
-			case 'itc_rf_gain1':
-
-				break;
-
-			case 'itc_rf_gain2':
-
-				break;
-
-			case 'itc_analog_gain':
-				ch1_a_gain = $('#itc_analog_gain').val();
-				break;
-
-			case 'itc_analog_gain1':
-
-				break;
-
-			case 'itc_analog_gain2':
-
-				break;
-
-			case 'ce_coeffD':
-				coeff_d = $('#ce_coeffD').val();
-				break;
-
-			case 'ce_rho':
-				rho = $('#ce_rho').val();
-				break;
-
-			case 'ce_ch1Alpha0':
-				ch1alpha0 = $('#ce_ch1Alpha0').val();
-				break;
-
-			case 'ce_a1':
-				a1 = $('#ce_a1').val();
-				break;
-
-			case 'ce_a2':
-				a2 = $('#ce_a2').val();
-				break;
-
-			case 'ce_ch1_Beta0':
-				ch1beta0 = $('#ce_ch1_Beta0').val();
-				break;
-
-			case 'ce_a3':
-				a3 = $('#ce_a3').val();
-				break;
-
-			case 'ce_a8':
-				a8 = $('#ce_a8').val();
-				break;
-
-			case 'ce_ch2Alpha0':
-				ch2alpha0 = $('#ce_ch2Alpha0').val();
-				break;
-
-			case 'ce_a0':
-				a0 = $('#ce_a0').val();
-				break;
-
-			case 'ce_a5':
-				a5 = $('#ce_a5').val();
-				break;
-
-			case 'ce_ch2Beta0':
-				ch2beta0 = $('#ce_ch2Beta0').val();
-				break;
-
-			case 'ce_a6':
-				a6 = $('#ce_a6').val();
-				break;
-
-			case 'ce_s1':
-				s1 = $('#ce_s1').val();
-				break;
-
-			case 'ce_s2':
-				s2 = $('#ce_s2').val();
-				break;
-
-			case 'ce_n1':
-				n1 = $('#ce_n1').val();
-				break;
-
-			case 'ce_n2':
-				n2 = $('#ce_n2').val();
-				break;
-
-			case 'dp_blink_Range_max':
-				blink_range_max = $('#dp_blink_Range_max').val();
-				break;
-
-			case 'dp_mat_temp_Max':
-
-				break;
-
-			case 'dp_blink_range_min':
-				blink_range_min = $('#dp_blink_range_min').val();
-				break;
-
-			case 'dp_mat_temp_min':
-
-				break;
-			} 
-
-			updateDataTabDetails(ch1alpha0, ch1beta0, ch2alpha0, ch2beta0, a0,
-					a1, a2, a3, coeff_d, a5, a6, modbus_mattemp, pll_freq1,
-					pll_freq2, average_time_zero, normal_avg_time,
-					det_avg_time, temp_sel, mval_sel, ch1_a_gain, ch1_rf_gain,
-					mode, p, i, d, int_temp_setpoint, blink_range_max,
-					blink_range_min, mat_temp_min, mat_temp_max, ch2_a_gain,
-					ch2_rf_gain, proxi_enable, tempcont_enable,
-					iout_calib_5_ma, iout_calib_19_ma, s1, s2, n1, n2, spare,
-					rho, a8, iz_2, iz1_2, iz2_2, qz_2, qz1_2, qz2_2, calibValue)
-			 */
 		}
+
+		$(document).ready(function() {
+			window.setInterval(function() {
+				getDataTabDetailsJson();
+			}, 1000);
+		});
 	</script>
 
 </body>

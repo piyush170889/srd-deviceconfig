@@ -67,11 +67,11 @@ public class DataTabAction {
 					rs.getFloat("Ch1Alpha0"), rs.getInt("Ch2_A_Gain"), rs.getInt("CH2_RF_Gain"),
 					rs.getFloat("Ch2Alpha0"), rs.getFloat("Ch2Beta0"), rs.getFloat("coeff_d"), rs.getFloat("D"),
 					rs.getFloat("Det_Avg_time"), rs.getFloat("I"), rs.getFloat("Int_temp_setpoint"),
-					rs.getFloat("Iout_Calib_19 mA"), rs.getFloat("Iout_Calib_5 mA"), rs.getFloat("Iz1_2"),
+					rs.getFloat("iout_calib_19_mA"), rs.getFloat("iout_calib_5_mA"), rs.getFloat("Iz1_2"),
 					rs.getFloat("Iz2_2"), rs.getFloat("Iz_2"), rs.getFloat("Mat_temp_Max"), rs.getFloat("Mat_temp_min"),
 					rs.getFloat("ModBus_MatTemp"), rs.getInt("Mode"), rs.getInt("Mval_sel"), rs.getInt("n1"),
-					rs.getInt("n2"), rs.getFloat("Normal_Avg_time"), rs.getFloat("P"), rs.getFloat("PLL Freq1"),
-					rs.getFloat("PLL Freq2"), rs.getInt("Proxi_Enable"), rs.getFloat("Qz1_2"), rs.getFloat("Qz2_2"),
+					rs.getInt("n2"), rs.getFloat("Normal_Avg_time"), rs.getFloat("P"), rs.getFloat("PLL_Freq1"),
+					rs.getFloat("PLL_Freq2"), rs.getInt("Proxi_Enable"), rs.getFloat("Qz1_2"), rs.getFloat("Qz2_2"),
 					rs.getFloat("Qz_2"), rs.getFloat("Rho"), rs.getFloat("S1"), rs.getFloat("S2"), rs.getInt("spare"),
 					rs.getInt("Temp_sel"), rs.getInt("TempCont_Enable"));
 		} else {

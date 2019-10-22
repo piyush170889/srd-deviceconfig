@@ -13,7 +13,7 @@ import com.srd.deviceconfig.utils.DbUtil;
 
 public class DeviceMasterAction extends ActionSupport {
 
-	private String serialNo;
+	private String serialNo = "1";
 	private int comPort;
 	private int dataRate;
 	private String comments;
@@ -64,6 +64,7 @@ public class DeviceMasterAction extends ActionSupport {
 
 	@Override
 	public String execute() throws Exception {
+		System.out.println("Execute Called");
 		deviceMasterList = new ArrayList<DeviceMasterAction>();
 		try {
 			this.deviceMasterList.addAll(getDeviceMasterList());
@@ -79,13 +80,13 @@ public class DeviceMasterAction extends ActionSupport {
 	private List<DeviceMasterAction> getDeviceMasterList() throws SQLException {
 
 		Connection con = DbUtil.getConnection();
-		String slNoHrRSql = "SELECT * FROM device_master";
+		String deviceMasterSql = "SELECT * FROM device_master";
 
-		PreparedStatement ps = con.prepareStatement(slNoHrRSql);
+		PreparedStatement ps = con.prepareStatement(deviceMasterSql);
 		ResultSet rs = ps.executeQuery();
 
 		List<DeviceMasterAction> deviceMasterActionList = new ArrayList<DeviceMasterAction>();
-		if (rs.next()) {
+		while (rs.next()) {
 			DeviceMasterAction deviceMasterAction = new DeviceMasterAction(rs.getString("SERIAL_NO"),
 					rs.getInt("COM_PORT"), rs.getInt("DATA_RATE"), rs.getString("COMMENTS"));
 			System.out.println("OUTPUT::::::::::::::::::::\n" + deviceMasterAction.toString());

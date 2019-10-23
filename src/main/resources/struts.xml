@@ -34,6 +34,11 @@
 			<result name="SUCCESS" type="redirect">data-tab</result>
 		</action>
 
+		<action name="updateDeviceData" class="com.srd.deviceconfig.action.DeviceMasterAction"
+			method="updateDeviceData">
+			<result name="SUCCESS" type="json"></result>
+		</action>
+
 	</package>
 
 </struts>

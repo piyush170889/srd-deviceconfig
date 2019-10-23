@@ -2,35 +2,37 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <html>
-
 <head>
 <meta charset="UTF-8">
 <title>Device Config</title>
 <link rel="stylesheet" type="text/css" href="css/first.css">
-<script src="js/basejs.js" type="text/javascript"></script>
+<script src="js/jquery_3_4_1.min.js"></script>
+<%-- <script src="js/basejs.js" type="text/javascript"></script> --%>
 <script type="text/javascript">
-	function loadSelectedDeviceDetails(serialNo) {
+	function loadSelectedDeviceDetails(serialNo, comments, comPort, baudRate,
+			dataBits, parity, stopBits, isConn) {
 
-		//TODO : Remove serialNo. Here serialNo doesn't give dynamic value
-		console.log("Selected device: ", serialNo);
-		document.getElementById('textarea-comment').innerHTML = 'One Device connected';
+		console.log("serial-no: " + serialNo + ", comments - " + comments
+				+ ", comPort=" + comPort + ", baudRate = " + baudRate
+				+ ", dataBits = " + dataBits + ", parity = " + parity
+				+ ", stopBits = " + stopBits);
 
-		//set dropdown
-		var temp = "8080";
-		var mySelect = document.getElementById('select-com-port');
-
-		for (var i, j = 0; i = mySelect.options[j]; j++) {
-			if (i.value == temp) {
-				mySelect.selectedIndex = j;
-				break;
-			}
-		}
-
+		$('#serial-no').val(serialNo);
+		$('#is-conn').val(isConn);
+		$('#textarea-comment').html(comments);
+		$('#select-com-port').val(comPort);
+		$('#baud-rate').val(baudRate);
+		$('#data-bits').val(dataBits);
+		$('#parity').val(parity);
+		$('#stop-bits').val(stopBits);
 	}
 </script>
 </head>
 
 <body>
+
+	<input type="hidden" id="serial-no" value="" />
+	<input type="hidden" id="is-conn" value="" />
 
 	<div class="actualdiv">
 
@@ -68,119 +70,48 @@
 			<div class="devices-list">
 				<h5>All Devices</h5>
 				<ul>
+					<s:iterator value="deviceMasterList" var="deviceMaster">
 
-					<%-- <s:radio name="device_radio" list="deviceMasterList"
-						listKey="serialNo" listValue="serialNo" /> --%>
+						<li>
 
-
-					<li><s:iterator value="deviceMasterList" var="deviceMaster">
 							<div class="devices-label">
 								<s:property value="serialNo" />
 							</div>
 							<div class="devices-input">
-								<input id="#deviceMaster.serialNo" type="radio"
-									onclick="loadSelectedDeviceDetails(id)" />
+								<input type="radio" name="selectedDevice"
+									value="<s:property value="serialNo" />"
+									onclick="loadSelectedDeviceDetails('<s:property value="serialNo" />', '<s:property value="comments" />', 
+									'<s:property value="comPort" />', '<s:property value="baudRate" />', '<s:property value="dataRate" />', 
+									'<s:property value="parity" />', '<s:property value="stopBits" />', '<s:property value="isConn" />')" />
 							</div>
 
-						</s:iterator></li>
-
-					<!-- 					<li>
-						<div class="devices-label">Sr No 2</div>
-						<div class="devices-input">
-							<input id="checkid" type="checkbox" value="test" />
-						</div>
-					</li>
-					<li>
-						<div class="devices-label">Sr No 2</div>
-						<div class="devices-input">
-							<input id="checkid" type="checkbox" value="test" />
-						</div>
-					</li>
-					<li>
-						<div class="devices-label">Sr No 2</div>
-						<div class="devices-input">
-							<input id="checkid" type="checkbox" value="test" />
-						</div>
-					</li>
-					<li>
-						<div class="devices-label">Sr No 2</div>
-						<div class="devices-input">
-							<input id="checkid" type="checkbox" value="test" />
-						</div>
-					</li>
-					<li>
-						<div class="devices-label">Sr No 2</div>
-						<div class="devices-input">
-							<input id="checkid" type="checkbox" value="test" />
-						</div>
-					</li>
-					<li>
-						<div class="devices-label">Sr No 2</div>
-						<div class="devices-input">
-							<input id="checkid" type="checkbox" value="test" />
-						</div>
-					</li> -->
+						</li>
+					</s:iterator>
 				</ul>
 			</div>
 
 
 			<div class="devices-list">
+
 				<h5>Connected Devices</h5>
+
 				<ul>
 
-					<li><s:iterator value="deviceMasterList" var="deviceMaster">
-							<s:if test="%{#deviceMaster.isConnected=='true'}">
+					<s:iterator value="deviceMasterList" var="deviceMaster">
+						<li><s:if test="%{#deviceMaster.isConn==1}">
 								<div class="devices-label">
 									<s:property value="serialNo" />
 								</div>
 								<div class="devices-input">
-									<input id="#deviceMaster.serialNo" type="checkbox" />
+									<input type="radio" name="selectedDevice"
+										value="<s:property value="serialNo" />"
+										onclick="loadSelectedDeviceDetails('<s:property value="serialNo" />', '<s:property value="comments" />', 
+									'<s:property value="comPort" />', '<s:property value="baudRate" />', '<s:property value="dataRate" />', 
+									'<s:property value="parity" />', '<s:property value="stopBits" />', '<s:property value="isConn" />')" />
 								</div>
-							</s:if>
-						</s:iterator></li>
+							</s:if></li>
+					</s:iterator>
 
-					<!-- <li>
-						<div class="devices-label">Sr No 1</div>
-						<div class="devices-input">
-							<input id="checkid" type="checkbox" value="test" />
-						</div>
-					</li>
-					<li>
-						<div class="devices-label">Sr No 2</div>
-						<div class="devices-input">
-							<input id="checkid" type="checkbox" value="test" />
-						</div>
-					</li>
-					<li>
-						<div class="devices-label">Sr No 2</div>
-						<div class="devices-input">
-							<input id="checkid" type="checkbox" value="test" />
-						</div>
-					</li>
-					<li>
-						<div class="devices-label">Sr No 2</div>
-						<div class="devices-input">
-							<input id="checkid" type="checkbox" value="test" />
-						</div>
-					</li>
-					<li>
-						<div class="devices-label">Sr No 2</div>
-						<div class="devices-input">
-							<input id="checkid" type="checkbox" value="test" />
-						</div>
-					</li>
-					<li>
-						<div class="devices-label">Sr No 2</div>
-						<div class="devices-input">
-							<input id="checkid" type="checkbox" value="test" />
-						</div>
-					</li>
-					<li>
-						<div class="devices-label">Sr No 2</div>
-						<div class="devices-input">
-							<input id="checkid" type="checkbox" value="test" />
-						</div>
-					</li> -->
 				</ul>
 			</div>
 
@@ -198,9 +129,10 @@
 							<select id="select-com-port">
 
 								<option>Select</option>
-								<option>9999</option>
-								<option>1234</option>
 								<option>8080</option>
+								<option>8081</option>
+								<option>8082</option>
+								<option>8083</option>
 							</select>
 						</div>
 					</div>
@@ -208,9 +140,12 @@
 					<div class="conn-props">
 						<div class="comm-con-prop-devices-label">Baud Rate:</div>
 						<div class="comm-con-prop-devices-input">
-							<select>
+							<select id="baud-rate">
 								<option>Select</option>
-								<option>Option 1</option>
+								<option>2</option>
+								<option>4</option>
+								<option>6</option>
+								<option>8</option>
 							</select>
 						</div>
 					</div>
@@ -218,9 +153,12 @@
 					<div class="conn-props">
 						<div class="comm-con-prop-devices-label">Data Bits:</div>
 						<div class="comm-con-prop-devices-input">
-							<select>
+							<select id="data-bits">
 								<option>Select</option>
-								<option>Option 1</option>
+								<option>50</option>
+								<option>100</option>
+								<option>150</option>
+								<option>200</option>
 							</select>
 						</div>
 					</div>
@@ -228,9 +166,12 @@
 					<div class="conn-props">
 						<div class="comm-con-prop-devices-label">Parity:</div>
 						<div class="comm-con-prop-devices-input">
-							<select>
+							<select id="parity">
 								<option>Select</option>
-								<option>Option 1</option>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
 							</select>
 						</div>
 					</div>
@@ -238,9 +179,12 @@
 					<div class="conn-props">
 						<div class="comm-con-prop-devices-label">Stop Bits:</div>
 						<div class="comm-con-prop-devices-input">
-							<select>
+							<select id="stop-bits">
 								<option>Select</option>
-								<option>Option 1</option>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
 							</select>
 						</div>
 					</div>
@@ -249,7 +193,7 @@
 			</div>
 
 			<div class="connect-btn">
-				<input type="button" value="Connect">
+				<input type="button" onclick="updateDeviceData()" value="Connect">
 			</div>
 
 		</div>
@@ -262,8 +206,30 @@
 
 	</div>
 
-	<!-- <img class="linebottom" src="images/line.png" alt="bottomLine" /> -->
+	<script type="text/javascript">
+		function updateDeviceData() {
 
+			var data = {
+				'serialNo' : $('#serial-no').val(),
+				'comments' : $('#textarea-comment').val(),
+				'comPort' : $('#select-com-port').val(),
+				'dataRate' : $('#data-bits').val(),
+				'baudRate' : $('#baud-rate').val(),
+				'parity' : $('#parity').val(),
+				'stopBits' : $('#stop-bits').val(),
+				'isConn' : $('#is-conn').val()
+			};
+
+			$.ajax({
+				type : 'POST',
+				url : "updateDeviceData",
+				data : data,
+				success : function(data) {
+					console.log(data);
+				}
+			});
+		}
+	</script>
 </body>
 
 </html>

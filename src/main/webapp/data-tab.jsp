@@ -42,23 +42,45 @@
 					</div>
 
 					<div class="mp_div_3">
-					<div class="col-50">
-						<label>Wet</label>
-					</div>
-					<div class="col-50">
-						<label>Dry</label>
-					</div>
-					<div class="col-50">
-						<label class="mp_div_3_label" id="mp_moist_perc_wet">0.0</label>
-					</div>
-					<div class="col-50">
-						<label class="mp_div_3_label" id="mp_moist_perc_dry">0.0</label>
-					</div>
-						 <label
-							class="mp_div_3_label" id="mp_mat_Temp">0.0</label> <label
-							id="mp_mat_density" class="mp_div_3_label">0.0</label> <input
-							type="radio" value="modbus"> Modbus <input type="radio"
-							value="modbus"> 4-20 mA
+						<div class="col-50">
+							<label>Wet</label>
+						</div>
+						<div class="col-50">
+							<label>Dry</label>
+						</div>
+
+						<div class="col-50 margin-top-4">
+							<label class="mp_div_3_label" id="mp_moist_perc_wet">0.0</label>
+						</div>
+						<div class="col-50 margin-top-4">
+							<label class="mp_div_3_label" id="mp_moist_perc_dry">0.0</label>
+						</div>
+
+						<div class="col-50 margin-top-4">
+							<label class="mp_div_3_label" id="mp_mat_Temp_wet">0.0</label>
+						</div>
+						<div class="col-50 margin-top-4">
+							<label class="mp_div_3_label" id="mp_mat_Temp_dry">0.0</label>
+						</div>
+
+						<div class="col-50 margin-top-4">
+							<label id="mp_mat_density_wet" class="mp_div_3_label">0.0</label>
+						</div>
+						<div class="col-50 margin-top-4">
+							<label id="mp_mat_density_dry" class="mp_div_3_label">0.0</label>
+						</div>
+
+
+						<div class="col-50 margin-top-9">
+							<input type="radio" value="modbus" class="margin-top-4">
+							Modbus 1
+						</div>
+						<div class="col-50 margin-top-9">
+							<input type="radio" value="modbus" class="margin-top-4">
+							4-20 mA
+						</div>
+
+
 					</div>
 
 					<div>
@@ -681,7 +703,7 @@
 						</div>
 						<div class="col-50">
 							<div class="progress-bar">
-								<span id="progress-bar-span" style="width: 25%"></span>
+								<span id="progress-bar-span" style="width: 0%"></span>
 							</div>
 						</div>
 					</div>

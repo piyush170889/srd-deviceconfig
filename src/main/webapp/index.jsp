@@ -8,25 +8,7 @@
 <link rel="stylesheet" type="text/css" href="css/first.css">
 <script src="js/jquery_3_4_1.min.js"></script>
 <%-- <script src="js/basejs.js" type="text/javascript"></script> --%>
-<script type="text/javascript">
-	function loadSelectedDeviceDetails(serialNo, comments, comPort, baudRate,
-			dataBits, parity, stopBits, isConn) {
 
-		console.log("serial-no: " + serialNo + ", comments - " + comments
-				+ ", comPort=" + comPort + ", baudRate = " + baudRate
-				+ ", dataBits = " + dataBits + ", parity = " + parity
-				+ ", stopBits = " + stopBits);
-
-		$('#serial-no').val(serialNo);
-		$('#is-conn').val(isConn);
-		$('#textarea-comment').html(comments);
-		$('#select-com-port').val(comPort);
-		$('#baud-rate').val(baudRate);
-		$('#data-bits').val(dataBits);
-		$('#parity').val(parity);
-		$('#stop-bits').val(stopBits);
-	}
-</script>
 </head>
 
 <body>
@@ -206,30 +188,7 @@
 
 	</div>
 
-	<script type="text/javascript">
-		function updateDeviceData() {
-
-			var data = {
-				'serialNo' : $('#serial-no').val(),
-				'comments' : $('#textarea-comment').val(),
-				'comPort' : $('#select-com-port').val(),
-				'dataRate' : $('#data-bits').val(),
-				'baudRate' : $('#baud-rate').val(),
-				'parity' : $('#parity').val(),
-				'stopBits' : $('#stop-bits').val(),
-				'isConn' : $('#is-conn').val()
-			};
-
-			$.ajax({
-				type : 'POST',
-				url : "updateDeviceData",
-				data : data,
-				success : function(data) {
-					console.log(data);
-				}
-			});
-		}
-	</script>
+	<script src="js/device-config.js" type="text/javascript"></script>
 </body>
 
 </html>

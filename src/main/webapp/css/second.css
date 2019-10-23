@@ -285,3 +285,43 @@ h5 span {
 .margin-top-9 {
 	margin-top: 9%;
 }
+
+/* CSS Added On 23rd Oct, 08:30 AM */
+.r_components_childsec {
+	width: 32%;
+	float: left;
+	text-align: center;
+}
+
+.r_components_childsec_subdiv {
+	width: 49%;
+	float: left;
+	text-align: center;
+	font-size: 12px;
+}
+
+.r_components_childsec_subdiv input {
+	width: 45%;
+	font-size: 12px;
+	text-align: center;
+}
+
+.r_components_childsec_subdiv input[type="button"] {
+	width: 90%;
+	font-size: 12px;
+	text-align: center;
+	margin: 2% 4%
+}
+
+.r_components_one_by_four_div {
+	width: 24%;
+	float: left;
+	text-align: center;
+	font-size: 12px;
+}
+
+.r_components_one_by_four_div input {
+	width: 35%;
+	font-size: 12px;
+}
+

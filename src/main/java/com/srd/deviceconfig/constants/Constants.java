@@ -13,6 +13,8 @@ public class Constants {
 
 	public static final String FILE_SEPARATOR = System.getProperty("file.separator");
 
+	public static final String CON_DEVICE_KEY = "connected_device_id";
+
 	public static Map<String, String> fieldIdToDbColumnMapping = new HashMap<String, String>();
 
 	static {
@@ -23,13 +25,14 @@ public class Constants {
 		fieldIdToDbColumnMapping.put("ds_average_time_zero", "average_time_zero");
 		fieldIdToDbColumnMapping.put("ds_normal_Avg_time", "normal_avg_time");
 		fieldIdToDbColumnMapping.put("ds_det_Avg_time", "det_avg_time");
-		fieldIdToDbColumnMapping.put("itc_freq", "");	// No Column Mapping
+		fieldIdToDbColumnMapping.put("itc_freq", ""); // No Column Mapping
 		fieldIdToDbColumnMapping.put("itc_freq1", "pll_freq1");
 		fieldIdToDbColumnMapping.put("itc_freq2", "pll_freq2");
-		fieldIdToDbColumnMapping.put("itc_rf_gain", "");	// No Column Mapping
+		fieldIdToDbColumnMapping.put("itc_rf_gain", ""); // No Column Mapping
 		fieldIdToDbColumnMapping.put("itc_rf_gain1", "ch1_rf_gain");
 		fieldIdToDbColumnMapping.put("itc_rf_gain2", "ch2_rf_gain");
-		fieldIdToDbColumnMapping.put("itc_analog_gain", "");	// No Column Mapping
+		fieldIdToDbColumnMapping.put("itc_analog_gain", ""); // No Column
+																// Mapping
 		fieldIdToDbColumnMapping.put("itc_analog_gain1", "ch1_a_gain");
 		fieldIdToDbColumnMapping.put("itc_analog_gain2", "ch2_a_gain");
 		fieldIdToDbColumnMapping.put("ce_coeffD", "coeff_d");
@@ -54,4 +57,14 @@ public class Constants {
 		fieldIdToDbColumnMapping.put("dp_blink_range_min", "blink_range_min");
 		fieldIdToDbColumnMapping.put("dp_mat_temp_min", "mat_temp_min");
 	}
+
+	public static Map<String, String> deviceToTableMapping = new HashMap<String, String>();
+
+	static {
+		deviceToTableMapping.put("SR NO 1", "slno1");
+		deviceToTableMapping.put("SR NO 2", "slno2");
+		deviceToTableMapping.put("SR NO 3", "slno3");
+	}
+	
+	
 }

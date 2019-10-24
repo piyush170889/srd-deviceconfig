@@ -5,7 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Date;
 
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
+
 import com.srd.deviceconfig.constants.Constants;
+import com.srd.deviceconfig.utils.CommonUtility;
 import com.srd.deviceconfig.utils.DbUtil;
 
 public class SlnoHrW {
@@ -551,8 +556,8 @@ public class SlnoHrW {
 		try {
 			String columnName = Constants.fieldIdToDbColumnMapping.get(this.fieldId);
 
-			String insertSlnoHrWSql = "INSERT INTO slno1_hr_w(time_stamp, " + columnName + ") VALUES ('" + new Date()
-					+ "', " + this.fieldValue + ")";
+			String insertSlnoHrWSql = "INSERT INTO " + CommonUtility.getDeviceTable() + "_hr_w(time_stamp, "
+					+ columnName + ") VALUES ('" + new Date() + "', " + this.fieldValue + ")";
 			System.out.println("insertSlnoHrWSql = " + insertSlnoHrWSql);
 
 			Connection con = DbUtil.getConnection();
@@ -679,12 +684,12 @@ public class SlnoHrW {
 	public String updateDataTabDetailsJson() throws SQLException {
 
 		System.out.println(this.toString());
-
 		Connection con = DbUtil.getConnection();
 
 		// Insert values into Slno_Hr_W table
 
-		String slNoIrRSql = "INSERT INTO slno1_hr_w(time_stamp, ch1alpha0, ch1beta0, ch2alpha0, "
+		String slNoIrRSql = "INSERT INTO " + CommonUtility.getDeviceTable()
+				+ "_hr_w(time_stamp, ch1alpha0, ch1beta0, ch2alpha0, "
 				+ "ch2beta0, a0, a1, a2, a3, coeff_d, a5, a6, modbus_mattemp, pll_freq1, "
 				+ "pll_freq2, average_time_zero, normal_avg_time, det_avg_time, temp_sel, "
 				+ "mval_sel, ch1_a_gain, ch1_rf_gain, mode, p, i, d, int_temp_setpoint, "

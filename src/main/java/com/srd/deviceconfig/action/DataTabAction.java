@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import com.srd.deviceconfig.constants.Constants;
 import com.srd.deviceconfig.model.SlnoHrR;
 import com.srd.deviceconfig.model.SlnoIrR;
+import com.srd.deviceconfig.utils.CommonUtility;
 import com.srd.deviceconfig.utils.DbUtil;
 
 public class DataTabAction {
@@ -52,7 +53,8 @@ public class DataTabAction {
 	private SlnoHrR getSlnoHrRFromDb() throws SQLException {
 
 		Connection con = DbUtil.getConnection();
-		String slNoHrRSql = "SELECT * FROM slno1_hr_r ORDER BY time_stamp DESC LIMIT 1";
+		String slNoHrRSql = "SELECT * FROM " + CommonUtility.getDeviceTable()
+				+ "_hr_r ORDER BY time_stamp DESC LIMIT 1";
 
 		PreparedStatement ps = con.prepareStatement(slNoHrRSql);
 		ResultSet rs = ps.executeQuery();
@@ -84,7 +86,8 @@ public class DataTabAction {
 	private SlnoIrR getSlnoIrRFromDb() throws SQLException {
 
 		Connection con = DbUtil.getConnection();
-		String slNoIrRSql = "SELECT * FROM slno1_ir_r ORDER BY time_stamp DESC LIMIT 1";
+		String slNoIrRSql = "SELECT * FROM " + CommonUtility.getDeviceTable()
+				+ "_ir_r ORDER BY time_stamp DESC LIMIT 1";
 
 		PreparedStatement ps = con.prepareStatement(slNoIrRSql);
 		ResultSet rs = ps.executeQuery();

@@ -6,12 +6,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.struts2.dispatcher.SessionMap;
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.srd.deviceconfig.constants.Constants;
 import com.srd.deviceconfig.utils.DbUtil;
 
-public class DeviceMasterAction extends ActionSupport {
+public class DeviceMasterAction extends ActionSupport implements SessionAware {
 
 	private String serialNo;
 
@@ -30,6 +34,8 @@ public class DeviceMasterAction extends ActionSupport {
 	private int isConn;
 
 	private List<DeviceMasterAction> deviceMasterList;
+
+	private SessionMap<String, Object> sessionMap;
 
 	public DeviceMasterAction() {
 	}
@@ -182,13 +188,18 @@ public class DeviceMasterAction extends ActionSupport {
 			ps.setInt(5, this.parity);
 			ps.setInt(6, this.stopBits);
 			ps.setString(7, this.serialNo);
-
 			ps.executeUpdate();
+			sessionMap.put(Constants.CON_DEVICE_KEY, this.serialNo);
+			System.out.println("SESSION_MAP= " + sessionMap.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		return returnMssg;
+	}
+
+	public void setSession(Map<String, Object> map) {
+		sessionMap = (SessionMap) map;
 	}
 
 }

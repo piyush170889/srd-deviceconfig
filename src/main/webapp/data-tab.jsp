@@ -120,7 +120,7 @@
 						</div>
 						<div class="col-25">
 							<input type="text" value="" id="itc_int_temp_setpoint"
-								onblur="updateCalibrationValue('itc_int_temp_setpoint');" />
+								onkeyup="updateCalibrationValue(event, 'itc_int_temp_setpoint');" />
 						</div>
 					</div>
 
@@ -138,7 +138,7 @@
 							</div>
 							<div class="col-50">
 								<input type="text" value="" id="itc_p"
-									onblur="updateCalibrationValue('itc_p');" />
+									onkeyup="updateCalibrationValue(event, 'itc_p');" />
 							</div>
 
 							<!-- <div class="col-50"></div> -->
@@ -147,7 +147,7 @@
 							</div>
 							<div class="col-50">
 								<input type="text" value="" id="itc_i"
-									onblur="updateCalibrationValue('itc_i');" />
+									onkeyup="updateCalibrationValue(event, 'itc_i');" />
 							</div>
 
 							<!-- <div class="col-50"></div> -->
@@ -156,7 +156,7 @@
 							</div>
 							<div class="col-50">
 								<input type="text" value="" id="itc_d"
-									onblur="updateCalibrationValue('itc_d');" />
+									onkeyup="updateCalibrationValue(event, 'itc_d');" />
 							</div>
 						</div>
 
@@ -178,7 +178,7 @@
 						</div>
 						<div class="col-25">
 							<input type="text" id="ds_average_time_zero"
-								onblur="updateCalibrationValue('ds_average_time_zero');" /><br />
+								onkeyup="updateCalibrationValue(event, 'ds_average_time_zero');" /><br />
 						</div>
 						<!-- 	</div> -->
 						<div class="col-25">
@@ -186,7 +186,7 @@
 						</div>
 						<div class="col-25">
 							<input type="text" id="ds_normal_Avg_time"
-								onblur="updateCalibrationValue('ds_normal_Avg_time');" /><br />
+								onkeyup="updateCalibrationValue(event, 'ds_normal_Avg_time');" /><br />
 						</div>
 					</div>
 
@@ -196,7 +196,7 @@
 						</div>
 						<div class="col-25">
 							<input type="text" id="ds_det_Avg_time"
-								onblur="updateCalibrationValue('ds_det_Avg_time');" /><br />
+								onkeyup="updateCalibrationValue(event, 'ds_det_Avg_time');" /><br />
 						</div>
 					</div>
 
@@ -276,17 +276,17 @@
 
 					<div class="center-div-val">
 						<input type="number" id="itc_freq"
-							onblur="updateCalibrationValue('itc_freq');" />
+							onkeyup="updateCalibrationValue(event, 'itc_freq');" />
 					</div>
 
 					<div class="center-div-val">
 						<input type="number" id="itc_rf_gain"
-							onblur="updateCalibrationValue('itc_rf_gain');" />
+							onkeyup="updateCalibrationValue(event, 'itc_rf_gain');" />
 					</div>
 
 					<div class="center-div-val">
 						<input type="number" id="itc_analog_gain"
-							onblur="updateCalibrationValue('itc_analog_gain');" />
+							onkeyup="updateCalibrationValue(event, 'itc_analog_gain');" />
 					</div>
 
 					<div class="center-div-val">
@@ -332,17 +332,17 @@
 
 					<div class="center-div-val">
 						<input type="number" id="itc_freq1"
-							onblur="updateCalibrationValue('itc_freq1');" />
+							onkeyup="updateCalibrationValue(event, 'itc_freq1');" />
 					</div>
 
 					<div class="center-div-val">
 						<input type="number" id="itc_rf_gain1"
-							onblur="updateCalibrationValue('itc_rf_gain1');" />
+							onkeyup="updateCalibrationValue(event, 'itc_rf_gain1');" />
 					</div>
 
 					<div class="center-div-val">
 						<input type="number" id="itc_analog_gain1"
-							onblur="updateCalibrationValue('itc_analog_gain1');" />
+							onkeyup="updateCalibrationValue(event, 'itc_analog_gain1');" />
 					</div>
 
 					<div class="center-div-val">
@@ -387,18 +387,18 @@
 					<!-- <h5>Frequency</h5> -->
 
 					<div class="center-div-val">
-						<input onblur="updateCalibrationValue('itc_freq2');" type="number"
+						<input onkeyup="updateCalibrationValue(event, 'itc_freq2');" type="number"
 							id="itc_freq2" />
 					</div>
 
 					<div class="center-div-val">
 						<input type="number" id="itc_rf_gain2"
-							onblur="updateCalibrationValue('itc_rf_gain2');" />
+							onkeyup="updateCalibrationValue(event, 'itc_rf_gain2');" />
 					</div>
 
 					<div class="center-div-val">
 						<input type="number" id="itc_analog_gain2"
-							onblur="updateCalibrationValue('itc_analog_gain2');" />
+							onkeyup="updateCalibrationValue(event, 'itc_analog_gain2');" />
 					</div>
 
 					<div class="center-div-val">
@@ -453,7 +453,7 @@
 							</div>
 							<div class="r_components_childsec_subdiv">
 								<input type="text" id="ce_coeffD"
-									onblur="updateCalibrationValue('ce_coeffD');" /><br />
+									onkeyup="updateCalibrationValue(event, 'ce_coeffD');" /><br />
 							</div>
 						</div>
 						<div class="r_components_childsec">
@@ -462,7 +462,7 @@
 							</div>
 							<div class="r_components_childsec_subdiv">
 								<input type="text" id="ce_rho"
-									onblur="updateCalibrationValue('ce_rho');" /><br />
+									onkeyup="updateCalibrationValue(event, 'ce_rho');" /><br />
 							</div>
 						</div>
 						<div class="r_components_childsec">
@@ -471,7 +471,7 @@
 							</div>
 							<div class="r_components_childsec_subdiv">
 								<input type="text" id="ce_ch1Alpha0"
-									onblur="updateCalibrationValue('ce_ch1Alpha0');" /><br />
+									onkeyup="updateCalibrationValue(event, 'ce_ch1Alpha0');" /><br />
 							</div>
 						</div>
 					</div>
@@ -483,7 +483,7 @@
 							</div>
 							<div class="r_components_childsec_subdiv">
 								<input type="text" id="ce_a1"
-									onblur="updateCalibrationValue('ce_a1');" /><br />
+									onkeyup="updateCalibrationValue(event, 'ce_a1');" /><br />
 							</div>
 						</div>
 						<div class="r_components_childsec">
@@ -492,7 +492,7 @@
 							</div>
 							<div class="r_components_childsec_subdiv">
 								<input type="text" id="ce_a2"
-									onblur="updateCalibrationValue('ce_a2');" /><br />
+									onkeyup="updateCalibrationValue(event, 'ce_a2');" /><br />
 							</div>
 						</div>
 						<div class="r_components_childsec">
@@ -501,7 +501,7 @@
 							</div>
 							<div class="col-50">
 								<input type="text" id="ce_ch1_Beta0"
-									onblur="updateCalibrationValue('ce_ch1_Beta0');" /><br />
+									onkeyup="updateCalibrationValue(event, 'ce_ch1_Beta0');" /><br />
 							</div>
 						</div>
 					</div>
@@ -513,7 +513,7 @@
 							</div>
 							<div class="r_components_childsec_subdiv">
 								<input type="text" id="ce_a3"
-									onblur="updateCalibrationValue('ce_a3');" /><br />
+									onkeyup="updateCalibrationValue(event, 'ce_a3');" /><br />
 							</div>
 						</div>
 						<div class="r_components_childsec">
@@ -522,7 +522,7 @@
 							</div>
 							<div class="r_components_childsec_subdiv">
 								<input type="text" id="ce_a8"
-									onblur="updateCalibrationValue('ce_a8');" /><br />
+									onkeyup="updateCalibrationValue(event, 'ce_a8');" /><br />
 							</div>
 						</div>
 						<div class="r_components_childsec">
@@ -531,7 +531,7 @@
 							</div>
 							<div class="r_components_childsec_subdiv">
 								<input type="text" id="ce_ch2Alpha0"
-									onblur="updateCalibrationValue('ce_ch2Alpha0');" /><br />
+									onkeyup="updateCalibrationValue(event, 'ce_ch2Alpha0');" /><br />
 							</div>
 						</div>
 					</div>
@@ -544,7 +544,7 @@
 							</div>
 							<div class="r_components_childsec_subdiv">
 								<input type="text" id="ce_a0"
-									onblur="updateCalibrationValue('ce_a0');" /><br />
+									onkeyup="updateCalibrationValue(event, 'ce_a0');" /><br />
 							</div>
 						</div>
 						<div class="r_components_childsec">
@@ -553,7 +553,7 @@
 							</div>
 							<div class="r_components_childsec_subdiv">
 								<input type="text" id="ce_a5"
-									onblur="updateCalibrationValue('ce_a5');" /><br />
+									onkeyup="updateCalibrationValue(event, 'ce_a5');" /><br />
 							</div>
 						</div>
 						<div class="r_components_childsec">
@@ -562,7 +562,7 @@
 							</div>
 							<div class="r_components_childsec_subdiv">
 								<input type="text" id="ce_ch2Beta0"
-									onblur="updateCalibrationValue('ce_ch2Beta0');" /><br />
+									onkeyup="updateCalibrationValue(event, 'ce_ch2Beta0');" /><br />
 							</div>
 						</div>
 					</div>
@@ -574,7 +574,7 @@
 							</div>
 							<div class="r_components_childsec_subdiv">
 								<input type="text" id="ce_a6"
-									onblur="updateCalibrationValue('ce_a6');" /><br />
+									onkeyup="updateCalibrationValue(event, 'ce_a6');" /><br />
 							</div>
 						</div>
 					</div>
@@ -586,14 +586,14 @@
 						</div>
 						<div class="r_components_one_by_four_div">
 							<input type="text" id="ce_s1"
-								onblur="updateCalibrationValue('ce_s1');" /><br />
+								onkeyup="updateCalibrationValue(event, 'ce_s1');" /><br />
 						</div>
 						<div class="r_components_one_by_four_div">
 							<label>Ch2s :</label>
 						</div>
 						<div class="r_components_one_by_four_div">
 							<input type="text" id="ce_s2"
-								onblur="updateCalibrationValue('ce_s2');" /><br />
+								onkeyup="updateCalibrationValue(event, 'ce_s2');" /><br />
 						</div>
 					</div>
 
@@ -603,14 +603,14 @@
 						</div>
 						<div class="r_components_one_by_four_div">
 							<input type="text" id="ce_n1"
-								onblur="updateCalibrationValue('ce_n1');" /><br />
+								onkeyup="updateCalibrationValue(event, 'ce_n1');" /><br />
 						</div>
 						<div class="r_components_one_by_four_div">
 							<label>Ch2n :</label>
 						</div>
 						<div class="r_components_one_by_four_div">
 							<input type="text" id="ce_n2"
-								onblur="updateCalibrationValue('ce_n2');" /><br />
+								onkeyup="updateCalibrationValue(event, 'ce_n2');" /><br />
 						</div>
 					</div>
 
@@ -662,14 +662,14 @@
 							</div>
 							<div class="r_components_childsec_subdiv">
 								<input type="text" id="dp_blink_Range_max"
-									onblur="updateCalibrationValue('dp_blink_Range_max');" /><br />
+									onkeyup="updateCalibrationValue(event, 'dp_blink_Range_max');" /><br />
 							</div>
 							<div class="r_components_childsec_subdiv">
 								<label>Ext. Temp : </label>
 							</div>
 							<div class="r_components_childsec_subdiv">
 								<input type="text" id="dp_mat_temp_Max"
-									onblur="updateCalibrationValue('dp_mat_temp_Max');" /><br />
+									onkeyup="updateCalibrationValue(event, 'dp_mat_temp_Max');" /><br />
 							</div>
 						</div>
 
@@ -678,11 +678,11 @@
 						<div class="r_components_childsec_subdiv">
 							<div style="width: 100%">
 								<input type="text" id="dp_blink_range_min"
-									onblur="updateCalibrationValue('dp_blink_range_min');" /><br />
+									onkeyup="updateCalibrationValue(event, 'dp_blink_range_min');" /><br />
 							</div>
 							<div style="width: 100%">
 								<input type="text" id="dp_mat_temp_min"
-									onblur="updateCalibrationValue('dp_mat_temp_min');" /><br />
+									onkeyup="updateCalibrationValue(event, 'dp_mat_temp_min');" /><br />
 							</div>
 						</div>
 					</div>

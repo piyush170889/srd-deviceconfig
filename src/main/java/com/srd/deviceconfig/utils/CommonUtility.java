@@ -8,17 +8,18 @@ import com.srd.deviceconfig.constants.Constants;
 
 public class CommonUtility {
 
-	private static HttpSession session = ServletActionContext.getRequest().getSession(false);;
+	public static String getDeviceTable() throws Exception {
 
-	public static String getDeviceTable() {
-		if (session != null || session.getAttribute(Constants.CON_DEVICE_KEY) != null) {
+		HttpSession session = ServletActionContext.getRequest().getSession(false);
+
+		if (session != null && session.getAttribute(Constants.CON_DEVICE_KEY) != null) {
 			String deviceKey = (String) session.getAttribute(Constants.CON_DEVICE_KEY);
-			System.out.println("Constants.CON_DEVICE_KEY=" + deviceKey);
-
-			System.out.println("deviceToTableMapping Table name=" + Constants.deviceToTableMapping.get(deviceKey));
+//			System.out.println("Constants.CON_DEVICE_KEY=" + deviceKey);
+//
+//			System.out.println("deviceToTableMapping Table name=" + Constants.deviceToTableMapping.get(deviceKey));
 			return Constants.deviceToTableMapping.get(deviceKey);
-		}
-		return null;
+		} else
+			throw new Exception("No Session Exists");
 	}
 
 }

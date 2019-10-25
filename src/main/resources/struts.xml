@@ -11,8 +11,8 @@
 	<package name="com" namespace="/" extends="json-default">
 
 		<action name="deviceconfig-home" class="com.srd.deviceconfig.action.DeviceMasterAction">
-			<result name="SUCCESS">/index.jsp</result>
-			<result name="ERROR">/index.jsp</result>
+			<result name="SUCCESS">/device-config.jsp</result>
+			<result name="ERROR">/device-config.jsp</result>
 		</action>
 
 		<action name="data-tab">

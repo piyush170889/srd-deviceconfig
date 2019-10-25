@@ -17,7 +17,10 @@ public class Constants {
 
 	public static Map<String, String> fieldIdToDbColumnMapping = new HashMap<String, String>();
 
+	public static Map<String, String> deviceToTableMapping = new HashMap<String, String>();
+
 	static {
+		// Populate fieldIdToDbColumnMapping Hashmap
 		fieldIdToDbColumnMapping.put("itc_int_temp_setpoint", "int_temp_setpoint");
 		fieldIdToDbColumnMapping.put("itc_p", "p");
 		fieldIdToDbColumnMapping.put("itc_i", "i");
@@ -56,15 +59,10 @@ public class Constants {
 		fieldIdToDbColumnMapping.put("dp_mat_temp_Max", "mat_temp_max");
 		fieldIdToDbColumnMapping.put("dp_blink_range_min", "blink_range_min");
 		fieldIdToDbColumnMapping.put("dp_mat_temp_min", "mat_temp_min");
-	}
 
-	public static Map<String, String> deviceToTableMapping = new HashMap<String, String>();
-
-	static {
+		// Populate deviceToTableMapping Hashmap
 		deviceToTableMapping.put("SR NO 1", "slno1");
 		deviceToTableMapping.put("SR NO 2", "slno2");
 		deviceToTableMapping.put("SR NO 3", "slno3");
 	}
-	
-	
 }

@@ -8,7 +8,8 @@ function loadSelectedDeviceDetails(serialNo, comments, comPort, baudRate,
 
 	$('#serial-no').val(serialNo);
 	$('#is-conn').val(isConn);
-	$('#textarea-comment').html(comments);
+	console.log('Setting Val');
+	$('#textarea-comment').val(comments);
 	$('#select-com-port').val(comPort);
 	$('#baud-rate').val(baudRate);
 	$('#data-bits').val(dataBits);
